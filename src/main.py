@@ -15,12 +15,12 @@ def cmph(dtype, fct, size=MAXSIZE):
     elif dtype == array:
         t = type(fct)
         mt = ''
-        if fct == int:
+        if t == int:
             mt = 'b'
-        elif fct == str:
+        elif t == str:
             mt = 'u'
-            fct = 'a'
-        elif fct == float:
+            t = 'a'
+        elif t == float:
             mt = 'f'
         else:
             return None
