@@ -3,6 +3,7 @@ import sys
 from generator import *
 from dsloops import *
 from array import *
+from numpy import array as narray
 
 MAXSIZE = 10000000
 
@@ -25,6 +26,8 @@ def cmph(dtype, fct, size=MAXSIZE):
         else:
             return None
         return array(mt, [fct for i in range(size)])
+    elif dtype == narray:
+        return narray([fct for i in range(size)])
     else:
         # if we consider that the random objects do not
         # appear more than once (because there will be
@@ -47,34 +50,31 @@ def usage():
     print("\t-L for list")
     print("\t-S for set")
     print("\t-D for dict")
-    print("\t-A for array")
+    print("\t-A for array.array")
+    print("\t-N for numpy.array")
     print("Loop type:")
-    print("\t-l for the for loop with range")
+    print("\t-l for the for loop with range (Unavailable for dict and set)")
     print("\t-r for the for loop without range")
     print("\t-c for comprehension")
-    print("\t-w for while loop")
+    print("\t-w for while loop (Unavailable for dict and set)")
 
 
 def opt_type_checker(opt, t, size):
     if 'o' in opt:
         print("--++beginwarmup")
-        xs = cmph(t, randomobj(), size)
-        print("++--endwarmup")
+        xs = cmph(t, randomobj(), size)        
         return xs
     elif 'i' in opt:
         print("--++beginwarmup")
-        xs = cmph(t, randomint(), size)
-        print("++--endwarmup")
+        xs = cmph(t, randomint(), size)        
         return xs
     elif 'f' in opt:
         print("--++beginwarmup")
-        xs = cmph(t, randomfloat(), size)
-        print("++--endwarmup")
+        xs = cmph(t, randomfloat(), size)        
         return xs
     elif 's' in opt:
         print("--++beginwarmup")
         xs = cmph(t, randomstr(), size)
-        print("++--endwarmup")
         return xs
     else:
         print("Unprecised type")
@@ -150,9 +150,22 @@ def main():
             else:
                 print("Loop not specified")
                 exit(0)
+        elif 'N' in opt:
+            xs = opt_type_checker(opt, narray, size)
+            if 'r' in opt:
+                narray_for_loop_with_range(xs, size)
+            elif 'l' in opt:
+                narray_for_loop_without_range(xs)
+            elif 'c' in opt:
+                narray_comprehension(xs)
+            elif 'w' in opt:
+                narray_while_loop(xs, size)
+            else:
+                print("Loop not specified")
+                exit(0)
     else:
         usage()
-    
+
 
 if __name__ == '__main__':
     try:
