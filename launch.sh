@@ -5,7 +5,7 @@ nbtests=20
 step=10000
 for ((size = $startsize; size <= $endsize; size += $step)); do
     for datastructure in L S D A T; do
-	if [ "$datastructure" == "S" ];
+	if [ "$datastructure" == "A" ];
 	then
 	    for t in i s f; do
 	        for b in l c r w; do
