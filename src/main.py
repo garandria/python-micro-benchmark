@@ -1,7 +1,7 @@
 
 import sys
-from dsloops import *
 from generator import *
+from dsloops import *
 from array import *
 
 MAXSIZE = 10000000
@@ -15,12 +15,12 @@ def cmph(dtype, fct, size=MAXSIZE):
     elif dtype == array:
         t = type(fct)
         mt = ''
-        if 'int' in str(type(t)):
+        if fct == int:
             mt = 'b'
-        elif 'str' in str(type(t)):
+        elif fct == str:
             mt = 'u'
             fct = 'a'
-        elif 'float' in str(type(t)):
+        elif fct == float:
             mt = 'f'
         else:
             return None
