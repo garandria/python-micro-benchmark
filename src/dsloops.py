@@ -5,7 +5,7 @@ possible. It is not a quesiton of code
 duplication or whatever.
 """
 from array import *
-import time
+from numpy import array as narray
 
 #########
 # LISTS #
@@ -21,7 +21,7 @@ def list_for_loop_without_range(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in l:
         i
 
@@ -37,7 +37,7 @@ def list_for_loop_with_range(l, size):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in range(0, size):
         l[i]
 
@@ -50,7 +50,7 @@ def list_comprehension(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     [i for i in l]
 
 
@@ -65,7 +65,7 @@ def list_while_loop(l, size):
     :
     :rtype: NoneType
     """
-    print(time.time())
+    print("++--endwarmup")
     i = 0
     while i < size:
         l[i]
@@ -86,7 +86,7 @@ def set_for_loop_without_range(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in l:
         i    
 
@@ -98,7 +98,7 @@ def set_comprehension(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     {i for i in l}
 
 #########
@@ -115,7 +115,7 @@ def tuple_for_loop_without_range(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in l:
         i 
 
@@ -130,7 +130,7 @@ def tuple_for_loop_with_range(l, size):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in range (0, size):
         l[i]    
 
@@ -142,7 +142,7 @@ def tuple_comprehension(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     (i for i in l)
     
 def tuple_while_loop(l, size):
@@ -156,7 +156,7 @@ def tuple_while_loop(l, size):
     :
     :rtype: NoneType   
     """
-    print(time.time())
+    print("++--endwarmup")
     i = 0
     while i < size:
         l[i]
@@ -177,7 +177,7 @@ def dict_for_loop_without_range(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in l:
         i    
 
@@ -189,7 +189,7 @@ def dict_comprehension(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     {i: i for i in l}
 
 
@@ -207,7 +207,7 @@ def array_for_loop_without_range(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in l:
         i    
 
@@ -222,7 +222,7 @@ def array_for_loop_with_range(l, size):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     for i in range (0, size):
         l[i]    
 
@@ -234,7 +234,7 @@ def array_comprehension(l):
     :
     :rtype: float
     """
-    print(time.time())
+    print("++--endwarmup")
     array(l.typecode, [i for i in l])
     
 def array_while_loop(l, size):
@@ -248,8 +248,73 @@ def array_while_loop(l, size):
     :
     :rtype: NoneType
     """
-    print(time.time())
+    print("++--endwarmup")
     i = 0
     while i < size:
         l[i]
         i += 1
+
+
+##############
+# NUMPY ARRA #
+##############
+
+def narray_for_loop_without_range(l):
+    """
+    Iterate in the narray using
+    a for loop without the range
+    :parameter: a narray
+    :type: narray
+    :
+    :rtype: float
+    """
+    print("++--endwarmup")
+    for i in l:
+        i
+
+       
+def narray_for_loop_with_range(l, size):
+    """
+    Iterate in the narray using
+    a for loop with the range
+    :parameter: a narray
+    :type: narray
+    :parameter: sizeof the narray
+    :type: int
+    :
+    :rtype: float
+    """
+    print("++--endwarmup")
+    for i in range(0, size):
+        l[i]
+
+
+def narray_comprehension(l):
+    """
+    Iterate in the narray
+    :parameter:
+    :type:
+    :
+    :rtype: float
+    """
+    print("++--endwarmup")
+    narray([i for i in l])
+
+
+def narray_while_loop(l, size):
+    """
+    iterate in the narray using
+    a while loop
+    :parameter: a narray
+    :type: narray
+    :parameter: sizeof the narray
+    :type: int
+    :
+    :rtype: NoneType
+    """
+    print("++--endwarmup")
+    i = 0
+    while i < size:
+        l[i]
+        i += 1
+
