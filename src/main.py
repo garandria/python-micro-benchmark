@@ -13,7 +13,7 @@ def cmph(dtype, fct, size=MAXSIZE):
     if dtype == dict:
         return {i: fct for i in range(size)}
     elif dtype == array:
-        t = type(fct())
+        t = type(fct)
         mt = ''
         if 'int' in str(type(t)):
             mt = 'b'
