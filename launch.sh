@@ -1,8 +1,7 @@
 sleeptime=120
 startsize=1000000000
-endsize=1000000000000
-nbtests=20
-step=10000
+endsize=100000000000
+step=100000
 for ((size = $startsize; size <= $endsize; size += $step)); do
     for datastructure in L S D A T N; do
 	if [ "$datastructure" == "A" ];
