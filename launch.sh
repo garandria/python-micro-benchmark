@@ -9,7 +9,7 @@ for ((size = $startsize; size <= $endsize; size += $step)); do
 	then
 	    for t in i s f; do
 	        for b in l c r w; do
-		    for i in {1..$nbtests}; do
+		    for i in {1..20}; do
 			sleep $sleeptime
 			./tester.sh -n "$datastructure$t$b$size" aaronspirals/dstest "-$datastructure$t$b" $size
 		    done
@@ -20,15 +20,14 @@ for ((size = $startsize; size <= $endsize; size += $step)); do
 		if [ "$datastructure" == "D" ] || [ "$datastructure" == "S" ];
 		then
 		    for b in c r ; do
-			for i in {1..$nbtests}; do
+			for i in {1..20}; do
 			    sleep $sleeptime
 			    ./tester.sh -n "$datastructure$t$b$size" aaronspirals/dstest "-$datastructure$t$b" $size
 			done
-			
 		    done
 		else
 		    for b in l c r w; do
-			for i in {1..$nbtests}; do
+			for i in {1..20}; do
 			    sleep $sleeptime
 			    ./tester.sh -n "$datastructure$t$b$size" aaronspirals/dstest "-$datastructure$t$b" $size
 			done
