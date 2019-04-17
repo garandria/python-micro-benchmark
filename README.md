@@ -6,7 +6,6 @@ Iteration on data structures.
 ## Usage :
 
 ```
-python3 src/main.py -h
 Usage
 python3 main.py -<opt>
 Types:
@@ -21,12 +20,13 @@ Data Structures:
 	-L for list
 	-S for set
 	-D for dict
-	-A for array
+	-A for array.array
+	-N for numpy.array
 Loop type:
-	-l for the for loop with range
+	-l for the for loop with range (Unavailable for dict and set)
 	-r for the for loop without range
 	-c for comprehension
-	-w for while loop
+	-w for while loop (Unavailable for dict and set)
 
 ```
 
