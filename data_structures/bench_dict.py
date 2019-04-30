@@ -19,13 +19,13 @@ def insertion_comp(l):
     {i: i for i in l}
 
 
-def key_iteration(d):
+def iteration_key(d):
     print("++--endwarmup")
     for i in d:
         i
 
 
-def kv_iteration(d):
+def iteration_kv(d):
     print("++--endwarmup")
     for k, v in d:
         (k, v)
