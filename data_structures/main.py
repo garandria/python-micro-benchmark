@@ -4,11 +4,11 @@ Main program
 
 import sys
 import argparse
-
+import random
 
 MAXSIZE = 10000
 EXSIZE = MAXSIZE // 2
-
+REPET = 10000
 
 def main(argv):
     """    """
@@ -49,9 +49,9 @@ def main(argv):
                         help='number of extra element to add in the data structure')
     
     args = parser.parse_args()
-    print('{}'.format(args))
-
+    
     # LIST
+    print("--++beginwarmup")
     if args.data_structure == 'list':
         l = []
         ## TYPE CHECKING
@@ -67,41 +67,93 @@ def main(argv):
             l = STRING_L[:args.size].copy()
         ## ACTION CHECKING
         if args.action == 'iteration-for':
-            from bench_list import iteration_for
-            iteration_for(l)
+            print("++--endwarmup")
+            for i in range(REPET):
+                for j in l:
+                    j
+                    
         elif args.action == 'iteration-while':
-            from bench_list import iteration_while
-            iteration_while(l)
+            n = len(l)            
+            print("++--endwarmup")
+            for i in range(REPET):
+                j = 0
+                while j < n:
+                    l[j]
+                    j += 1
+                    
         elif args.action == 'iteration-for-range':
-            from bench_list import iteration_for_range
-            iteration_for_range(l)
+            n = len(l)
+            print("++--endwarmup")
+            for i in range(REPET):
+                for j in range(n):
+                    l[j]
         elif args.action == 'iteration-comp':
-            from bench_list import iteration_comp
-            iteration_comp(l)
-        elif args.action == 'insertion-beginning':
-            from bench_list import insertion_beginning
-            insertion_beginning(l, args.extra)
-        elif args.action == 'insertion-middle':
-            from bench_list import insertion_middle
-            insertion_middle(l, args.extra)
-        elif args.action == 'insertion-end':
-            from bench_list import insertion_end
-            insertion_end(l, args.extra)
+            print("++--endwarmup")
+            for i in range(REPET):
+                [k for k in l]
+        elif 'insertion' in args.action:
+            # 
+            slice_to_insert = l[:args.extra].copy()
+            ins = [slice_to_insert.copy() for _ in range(REPET)]
+            # 
+            tmp = [l.copy() for _ in range(REPET)]
+            # 
+            if args.action == 'insertion-beginning':
+                print("++--endwarmup")
+                for i in range(REPET):
+                    for e in ins[i]:
+                        tmp[i].insert(0, e)
+            elif args.action == 'insertion-middle':
+                middle = len(l) // 2
+                print("++--endwarmup")
+                for i in range(REPET):
+                    instmp = ins[i]
+                    tmp2 = tmp[i]
+                    for e in instmp:
+                        tmp2.insert(middle, e)
+            elif args.action == 'insertion-end':
+                n = length(l)
+                print("++--endwarmup")
+                for i in range(REPET):
+                    instmp = ins[i]
+                    tmp2 = tmp[i]                    
+                    for e in instmp:
+                        tmp2.append(e)
+                        
+                ## 
         elif args.action == 'random-acces':
-            from bench_list import random_access
-            random_access(l)
+            length = len(l)
+            indext = [random.randint(0, length) for _ in range(args.extra)]
+            print("++--endwarmup")
+            for i in range(REPET):
+                for e in indext:
+                    l[e]
         elif args.action == 'random-removal':
-            from bench_list import random_removal
-            random_removal(l, args.extra)
-        elif args.action == 'clean':
-            from bench_list import clean
-            clean(l)
+            length = len(l)
+            r = [l[random.randint(0, length)] for _ in range(args.extra)]
+            print("++--endwarmup")
+            for i in range(REPET):
+                for e in r:
+                    l.remove(e)
+        elif args.action == 'clean':            
+            tmp = [l.copy() for _ in range(REPET)]
+            print("++--endwarmup")
+            for i in range(REPET):
+                tmp[i].clear()
         elif args.action == 'pop':
-            from bench_list import lpop
-            lpop(l, args.extra)
+            tmp = [l.copy() for _ in range(REPET)]
+            print("++--endwarmup")
+            for i in range(REPET):
+                for k in range(args.extra):
+                    tmp[i].pop()
         elif args.action == 'extend':
-            from bench_list import lextend
-            lextend(l, args.extra)
+            tmp = [l.copy() for _ in range(REPET)]
+            ml = l[:args.extra].copy()
+            print("++--endwarmup")
+            for i in range(REPET):
+                for k in tmp:
+                    k.extend(ml)
+                    
         ##
     # DICTIONARY
     if args.data_structure == 'dict':
@@ -119,12 +171,16 @@ def main(argv):
                 from data import STRING_L
                 l = STRING_L[:args.size].copy()
             if args.action == 'insertion':
-                from bench_dict import insertion
-                insertion(l)
+                mdict = [dict() for _ in range(REPET)]
+                print("++--endwarmup")
+                for i in range(REPET):
+                    for k in l:
+                        mdict[i][k] = k
             # only 2 possibilities : insertion & insertion_comp
             else:
-                from bench_dict import insertion_comp
-                insertion_comp(l)        
+                print("++--endwarmup")
+                for i in range(REPET):
+                    {k: k for k in l}
         ## TYPE CHECKING
         tmp = dict()
         if args.type == 'integer':
@@ -144,17 +200,31 @@ def main(argv):
 
         ## ACTION CHECKING
         if args.action == 'iteration-key':
-            from bench_dict import iteration_key
-            iteration_key(d)
+            print("++--endwarmup")                    
+            for i in range(REPET):
+                for k in d:
+                    k
         elif args.action == 'iteration-kv':
-            from bench_dict import iteration_kv
-            iteration_kv(d)
+            print("++--endwarmup")
+            for i in range(REPET):
+                for k, v in d:
+                    (k, v)
         elif args.action == 'not-in':
-            from bench_dict import not_in
-            not_in(d, args.extra)
+            print("++--endwarmup")
+            for _ in range(REPET):
+                for _ in range(args.extra):
+                    try:
+                        d[None]
+                    except KeyError:
+                        pass
         elif args.action == 'random-access':
-            from bench_dict import random_access
-            random_access(d, args.extra)
+            ml = [k for k in d]
+            length = len(ml)
+            keys = [ml[random.randint(0, length)] for _ in range(args.extra)]
+            print("++--endwarmup")
+            for _ in range(REPET):
+                for k in keys:
+                    d[k]
         ##
 
     # SET
@@ -170,14 +240,19 @@ def main(argv):
                 l = FLOAT_L[:args.size].copy()
             elif args.type == 'str':
                 from data import STRING_L
-                l = STRING_L[:args.size].copy()
+                l = STRING_L[:args.size].copy() 
                 if args.action == 'insertion':
-                    from bench_set import insertion
-                    insertion(l)
+                    tmp = [set() for _ in range(REPET)]
+                    print("++--endwarmup")
+                    for i in range(REPET):
+                        tmp2 = tmp[i]
+                        for e in l:
+                            tpm2.add(e)
                 # only 2 possibilities : insertion & insertion_comp
                 else:
-                    from bench_set import insertion_comp
-                    insertion_comp(l)
+                    print("++--endwarmup")
+                    for _ in range(REPET):
+                        {e for e in l}
         ## TYPE CHECKING
         tmp = set()
         if args.type == 'integer':
@@ -197,14 +272,22 @@ def main(argv):
 
         ## ACTION CHECKING
         if args.action == 'iteration':
-            from bench_set import iteration
-            iteration(s)
+            print("++--endwarmup")
+            for _ in range(REPET):
+                for e in s:
+                    e
         elif args.action == 'random-in':
-            from bench_set import random_in
-            random_in(s, args.extra)
+            ml = list(s)
+            length = len(ml)
+            r = [ml[random.randint(0, length)] for _ in range(args.extra)]
+            print("++--endwarmup")
+            for _ in range(REPET):
+                for a in r:
+                    a in s
         elif args.action == 'not-in':
-            from bench_set import not_in
-            not_in(s, args.extra)
+            for _ in range(REPET):
+                for _ in range(args.extra):
+                    None in s
         ##
 
 if __name__ == '__main__':
