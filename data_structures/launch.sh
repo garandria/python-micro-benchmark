@@ -28,7 +28,7 @@ for ((size=$startsize; size <= $endsize; size += $step)); do
 				ins=$(( $size / $d ))
 				sync; echo 3 > /proc/sys/vm/drop_caches
 				swapoff -a && swapon -a
-				./tester.sh -n "$ds"_"$opt"_"$ins"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t" --extra $ins
+				./tester.sh -n "$ds$t"_"$opt"_"1/$d"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t" --extra $ins
 				# echo python main.py --action "$opt" --size $size --data-structure "$ds" --type "$t"
 				# python main.py --action "$opt" --size $size --data-structure "$ds" --type "$t"
 			    done
@@ -37,7 +37,7 @@ for ((size=$startsize; size <= $endsize; size += $step)); do
 			for i in {1..20}; do
 			    sync; echo 3 > /proc/sys/vm/drop_caches
 			    swapoff -a && swapon -a
-			    ./tester.sh -n "$ds"_"$opt"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t"
+			    ./tester.sh -n "$ds$t"_"$opt"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t"
 			done
 		    fi
 		done
@@ -53,7 +53,7 @@ for ((size=$startsize; size <= $endsize; size += $step)); do
 				ins=$(( $size / $d ))
 				sync; echo 3 > /proc/sys/vm/drop_caches
 				swapoff -a && swapon -a
-				./tester.sh -n "$ds"_"$opt"_"$ins"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t" --extra $ins
+				./tester.sh -n "$ds$t"_"$opt"_"1/$d"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t" --extra $insw
 				# echo python main.py --action "$opt" --size $size --data-structure "$ds" --type "$t"
 				# python main.py --action "$opt" --size $size --data-structure "$ds" --type "$t"
 			    done
@@ -62,7 +62,7 @@ for ((size=$startsize; size <= $endsize; size += $step)); do
 			for i in {1..20}; do
 			    sync; echo 3 > /proc/sys/vm/drop_caches
 			    swapoff -a && swapon -a
-			    ./tester.sh -n "$ds"_"$opt"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t"
+			    ./tester.sh -n "$ds$t"_"$opt"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t"
 			done
 		    fi
 		done
@@ -78,7 +78,7 @@ for ((size=$startsize; size <= $endsize; size += $step)); do
 				ins=$(( $size / $d ))
 				sync; echo 3 > /proc/sys/vm/drop_caches
 				swapoff -a && swapon -a
-				./tester.sh -n "$ds"_"$opt"_"$ins"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t" --extra $ins
+				./tester.sh -n "$ds"_"$opt"_"1/$d"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t" --extra $ins
 				# echo python main.py --action "$opt" --size $size --data-structure "$ds" --type "$t"
 				# python main.py --action "$opt" --size $size --data-structure "$ds" --type "$t"
 			    done
@@ -87,7 +87,7 @@ for ((size=$startsize; size <= $endsize; size += $step)); do
 			for i in {1..20}; do
 			    sync; echo 3 > /proc/sys/vm/drop_caches
 			    swapoff -a && swapon -a
-			    ./tester.sh -n "$ds"_"$opt"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t"
+			    ./tester.sh -n "$ds$t"_"$opt"_"$size" "$docker_image" --action "$opt" --size $size --data-structure "$ds" --type "$t"
 			done
 		    fi
 		done
