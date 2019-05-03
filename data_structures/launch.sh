@@ -1,9 +1,9 @@
-startsize=100000
+startsize=10000
 endsize=1000000
 step=10000
 docker_image=aaronspirals/pythonds
 
-opt_list=('iteration-for' 'iteration-while' 'iteration-for-range' 'iteration-comp' 'insertion-beginning' 'insertion-middle' 'inertion-end' 'random-access' 'random-removal' 'clean' 'pop' 'extend');
+opt_list=('iteration-for' 'iteration-while' 'iteration-for-range' 'iteration-comp' 'insertion-beginning' 'insertion-middle' 'insertion-end' 'random-access' 'random-removal' 'clean' 'pop' 'extend');
 
 opt_dict=('insertion' 'insertion-comp' 'iteration-key' 'iteration-kv' 'not-in' 'random-access');
 

@@ -8,9 +8,9 @@ import random
 
 MAXSIZE = 10000
 EXSIZE = MAXSIZE // 2
-REPET = 10000
+REPET = 1000
 
-def main(argv):
+def main():
     """    """
     parser = argparse.ArgumentParser()
     # size
@@ -94,15 +94,16 @@ def main(argv):
         elif 'insertion' in args.action:
             # 
             slice_to_insert = l[:args.extra].copy()
-            ins = [slice_to_insert.copy() for _ in range(REPET)]
+            ins = {i: slice_to_insert.copy() for i in range(REPET)}
             # 
-            tmp = [l.copy() for _ in range(REPET)]
+            tmp = {i: l.copy() for i in range(REPET)}
             # 
             if args.action == 'insertion-beginning':
                 print("++--endwarmup")
                 for i in range(REPET):
+                    tmp2 = tmp[i]
                     for e in ins[i]:
-                        tmp[i].insert(0, e)
+                        tmp2.insert(0, e)
             elif args.action == 'insertion-middle':
                 middle = len(l) // 2
                 print("++--endwarmup")
@@ -136,23 +137,23 @@ def main(argv):
                 for e in r:
                     l.remove(e)
         elif args.action == 'clean':            
-            tmp = [l.copy() for _ in range(REPET)]
+            tmp = {i: l.copy() for i in range(REPET)}
             print("++--endwarmup")
             for i in range(REPET):
                 tmp[i].clear()
         elif args.action == 'pop':
-            tmp = [l.copy() for _ in range(REPET)]
+            tmp = {i: l.copy() for i in range(REPET)]
             print("++--endwarmup")
             for i in range(REPET):
+                tmp2 = tmp[i]
                 for k in range(args.extra):
-                    tmp[i].pop()
+                    tmp2.pop()
         elif args.action == 'extend':
-            tmp = [l.copy() for _ in range(REPET)]
+            tmp = {i: l.copy() for i in range(REPET)}
             ml = l[:args.extra].copy()
             print("++--endwarmup")
             for i in range(REPET):
-                for k in tmp:
-                    k.extend(ml)
+                tmp[i].extend(ml)
                     
         ##
     # DICTIONARY
@@ -171,11 +172,12 @@ def main(argv):
                 from data import STRING_L
                 l = STRING_L[:args.size].copy()
             if args.action == 'insertion':
-                mdict = [dict() for _ in range(REPET)]
+                mdict = {dict() for _ in range(REPET)}
                 print("++--endwarmup")
                 for i in range(REPET):
+                    mdict2 = mdict[i]
                     for k in l:
-                        mdict[i][k] = k
+                        mdict2[k] = k
             # only 2 possibilities : insertion & insertion_comp
             else:
                 print("++--endwarmup")
@@ -242,7 +244,7 @@ def main(argv):
                 from data import STRING_L
                 l = STRING_L[:args.size].copy() 
                 if args.action == 'insertion':
-                    tmp = [set() for _ in range(REPET)]
+                    tmp = {i: set() for i in range(REPET)}
                     print("++--endwarmup")
                     for i in range(REPET):
                         tmp2 = tmp[i]
@@ -291,4 +293,4 @@ def main(argv):
         ##
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
