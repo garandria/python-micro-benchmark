@@ -142,7 +142,7 @@ def main():
             for i in range(REPET):
                 tmp[i].clear()
         elif args.action == 'pop':
-            tmp = {i: l.copy() for i in range(REPET)]
+            tmp = {i: l.copy() for i in range(REPET)}
             print("++--endwarmup")
             for i in range(REPET):
                 tmp2 = tmp[i]
