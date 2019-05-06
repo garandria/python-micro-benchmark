@@ -27,6 +27,5 @@ def random_in(s, n):
 
 def not_in(s, n):
     print("++--endwarmup")
-    for _ in range(args.extra):
+    for _ in range(n):
         None in s
-<

@@ -38,7 +38,7 @@ def insertion_middle(l, slice_to_insert):
         l.insert(middle, e)
 
 def insertion_end(l, slice_to_insert):
-    n = length(l)
+    n = len(l)
     print("++--endwarmup")
     for e in slice_to_insert:
         l.append(e)                        
