@@ -5,7 +5,7 @@ def insertion(l):
     d = dict()
     print("++--endwarmup")
     for k in l:
-        dict[k] = k
+        d[k] = k
 
 def comp(l):
     print("++--endwarmup")
@@ -18,12 +18,12 @@ def iteration_key(d):
 
 def iteration_kv(d):
     print("++--endwarmup")
-    for k, v in d:
+    for k, v in d.items():
         (k, v)
 
-def not_in(d):
+def not_in(d, n):
     print("++--endwarmup")
-    for _ in range(args.extra):
+    for _ in range(n):
         try:
             d[None]
         except KeyError:
