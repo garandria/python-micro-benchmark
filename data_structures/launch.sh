@@ -9,6 +9,9 @@ opt_dict=('insertion' 'insertion-comp' 'iteration-key' 'iteration-kv' 'not-in' '
 
 opt_set=('insertion' 'insertion-comp' 'iteration' 'random-in' 'not-in');
 
+opt_list=('iteration-for' 'iteration-while' 'iteration-for-range' 'iteration-comp' );
+
+
 types=('integer' 'float' 'str');
 
 data_structures=('list' 'set' 'dict');
