@@ -1,3 +1,5 @@
+import random
+
 
 def iteration_for(l):
     print("++--endwarmup")

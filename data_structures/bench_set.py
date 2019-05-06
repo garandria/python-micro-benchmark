@@ -1,3 +1,4 @@
+import random
 
 
 def insertion(l):
@@ -28,3 +29,4 @@ def not_in(s, n):
     print("++--endwarmup")
     for _ in range(args.extra):
         None in s
+<
