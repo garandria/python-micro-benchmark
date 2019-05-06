@@ -19,7 +19,7 @@ def main():
     parser.add_argument('--size', default=MAXSIZE, type=int)
     # data structure choice
     parser.add_argument('--data-structure', choices=['list', 'set', 'dict'],
-                        help='data strcture to do the test on', required=True)
+                        help='data structure to do the test on', required=True)
     # types
     parser.add_argument('--type', choices=['integer', 'float', 'str'],
                         help='data type', required=True)
@@ -141,7 +141,7 @@ def main():
         elif args.action == 'iteration-kv':
             bench_dict.iteration_kv(d)
         elif args.action == 'not-in':
-            bench_dict.not_in(d)
+            bench_dict.not_in(d, args.extra)
         elif args.action == 'random-access':
             bench_dict.random_access(d, args.extra)
         ##
