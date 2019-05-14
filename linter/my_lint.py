@@ -21,37 +21,92 @@ class WhileCheck (ast.NodeVisitor):
         self._cpt = 0
 
 
+    def visit_FunctionDef(self, node):
+        print("| visit_FunctionDef, l.", node.lineno)
+        print("| => FUNC :", node.name)
+        self.generic_visit(node)
+        print("| <= FUNC :", node.name)
+
+        
     def visit_While(self, node):
-        print("|trace : visit_While, l.", node.lineno)
+        print("| visit_While, l.", node.lineno)
         self._show_fields(node)
         if isinstance(node.test, ast.Compare):
             self._op = node.test.ops[0]
-            print("| trace : op ->", self._op)
+            print("| op ->", self._op)
             if isinstance(self._op, _ast.Lt) or isinstance(self._op, _ast.LtE):
                 # var {< | <=} var'
                 self._var_name = node.test.left.id
             else:
                 # var' {> | >=} var
                 self._var_name = node.test.comparators[0].id
-            print("| trace : var ->", self._var_name)
+            print("| var ->", self._var_name)
             self.generic_visit(node)
 
             
     def visit_AugAssign(self, node):
-        print("| trace : visit_AugAssign, l.", node.lineno)
+        print("| visit_AugAssign, l.", node.lineno)
         self._show_fields(node)
-        print("| trace : cpt ->", self._cpt)
+        print("| cpt ->", self._cpt)
         if isinstance(node.target, ast.Name):
-            if node.target.id == self._var_name:
-                self._cpt += 1
-                print("| trace : incr(cpt)")
-            print("| trace : cpt ->", self._cpt)
+            print("| ast.Name")
+            if self._is_var_name(node.target.id):
+                self._incr_cpt()
+                print("| incr(cpt)")
+            print("| cpt ->", self._cpt)
+        # if node.target is an attribute (oop)
+        if isinstance(node.target, ast.Attribute):
+            print("| ast.Attribute")
+            if self._is_var_name(node.target.value.id):
+                self._incr_cpt()
+                print("| incr(cpt)")
+            print("| cpt ->", self._cpt)
+                
+            
+    def visit_Assign(self, node):
+        print("| visit_Assign, l.", node.lineno)
+        self._show_fields(node)
+        # node.targes contains ast.Attribute (oop)
+        if len(node.targets) > 1:
+            # ex : a = b = 1
+            for name in node.targets:
+                if isinstance(name, ast.Attribute):
+                    if self._is_var_name(name.value.id):
+                        self._incr_cpt()
+                elif isinstance(name, ast.Name):
+                    if self._is_var_name(name.id):
+                        self._incr_cpt()
+        else:
+            if isinstance(node, ast.Tuple):
+                # ex : a, b, c = d
+                for name in node.targets.elts:
+                    if self._is_var_name(name.id):
+                        self._incr_cpt()
+            elif isinstance(node, ast.Attribute):
+                # my_attr.value = 1
+                if self._is_var_name(node.targets.value.id):
+                    self._incr_cpt()
+            elif isinstance(node, ast.Name):
+                if self._is_var_name(node.targets[0].id):
+                    self._incr_cpt()
+        
+                        
+    def _is_var_name(self, name):
+        return name == self._var_name
+    
+                        
+    def _incr_cpt(self):
+        self._cpt += 1
 
         
     def _show_fields(self, node):
         for fields in ast.iter_fields(node):
             print("|\t", fields[0], ':', fields[1:], end='\n')
 
+
+    def get_cpt(self):
+        return self._cpt
+            
 
 def main():
     parser = argparse.ArgumentParser()
@@ -61,10 +116,12 @@ def main():
     tree = None
     with open(args.filename, "r") as stream:
         tree = ast.parse(stream.read())
-    print(tree)
     # tree = ast.parse(fct)
     check = WhileCheck()
     check.visit(tree)
-        
+    if check.get_cpt() > 0:
+        print("Compteur :", check.get_cpt())
+    
+    
 if __name__ == '__main__':
     main()
