@@ -7,7 +7,7 @@ opt_list=('iteration-for' 'iteration-while' 'iteration-for-range' 'insertion-com
 
 opt_dict=('insertion' 'insertion-comp' 'iteration-key' 'iteration-kv' 'not-in' 'random-access');
 
-opt_set=('insertion' 'insertion-comp' 'iteration' 'random-in' 'not-in');
+opt_set=('insertion' 'insertion-comp' 'iteration' 'random-in' 'not-in' 'random-removal');
 
 types=('integer' 'float' 'str');
 
