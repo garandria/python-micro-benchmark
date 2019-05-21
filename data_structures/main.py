@@ -9,9 +9,6 @@ import bench_list
 import bench_set
 import bench_dict
 
-# TODO ADD LIST MODIFICATION CASE DOWN THERE
-
-
 MAXSIZE = 10000
 EXSIZE = MAXSIZE // 2
 
@@ -108,7 +105,12 @@ def main():
             bench_list.my_pop(l, args.extra)
         elif args.action == 'extend':
             bench_list.my_extend(l, args.extra)
-                    
+        elif args.action == 'modify-map-lambda':
+            bench_list.modify_map_lambda(l)
+        elif args.action == 'modify-comp':
+            bench_list.modify_comprehension(l)
+        elif args.action == 'modify-map-fct':
+            bench_list.modify_map_fct(l)            
         ##
     # DICTIONARY
     if args.data_structure == 'dict':
