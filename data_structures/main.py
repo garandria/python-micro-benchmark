@@ -47,7 +47,8 @@ def main():
                                              'random-in',
                                              'modify-map-lambda',
                                              'modify-comp',
-                                             'modify-map-fct'],
+                                             'modify-map-fct',
+                                             'modify-loop'],
                         help='action to perform on the data structure',
                         required=True)
 
@@ -110,7 +111,10 @@ def main():
         elif args.action == 'modify-comp':
             bench_list.modify_comprehension(l)
         elif args.action == 'modify-map-fct':
-            bench_list.modify_map_fct(l)            
+            bench_list.modify_map_fct(l)
+        elif args.action == 'modify-loop':
+            bench_list.modify_loop(l)
+
         ##
     # DICTIONARY
     if args.data_structure == 'dict':
@@ -158,6 +162,9 @@ def main():
             bench_dict.not_in(d, args.extra)
         elif args.action == 'random-access':
             bench_dict.random_access(d, args.extra)
+        elif args.action == 'random-removal':
+            bench_dict.random_removal(d, args.extra)
+
         ##
 
     # SET
