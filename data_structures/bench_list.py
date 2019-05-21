@@ -81,7 +81,7 @@ def insertion_end(l, slice_to_insert):
 
 def random_access(l, n):
     # ok
-    length = len(l)
+    length = len(l) - 1
     indext = [random.randint(0, length) for _ in range(n)]
     tmp = [l.copy() for _ in range(REPET)]
     print("++--endwarmup")
@@ -92,7 +92,7 @@ def random_access(l, n):
 
 def random_removal(l, n):
     # ok
-    length = len(l)
+    length = len(l) - 1
     r = [l[random.randint(0, length)] for _ in range(n)]
     tmp = [l.copy() for _ in range(REPET)]
     print("++--endwarmup")

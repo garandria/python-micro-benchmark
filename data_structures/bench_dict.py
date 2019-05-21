@@ -1,39 +1,47 @@
 import random
 
+REPET = 100000
 
 def insertion(l):
-    d = dict()
     print("++--endwarmup")
-    for k in l:
-        d[k] = k
+    for _ in range(REPET):
+        d = dict()
+        for k in l:
+            d[k] = k
 
 def comp(l):
     print("++--endwarmup")
-    {k: k for k in l}
+    for _ in range(REPET):
+        {k: k for k in l}
 
 def iteration_key(d):
     print("++--endwarmup")
-    for k in d:
-        k
+    for _ in range(REPET):
+        for k in d:
+            k
 
 def iteration_kv(d):
     print("++--endwarmup")
-    for k, v in d.items():
-        (k, v)
+    for _ in range(REPET):
+        for k, v in d.items():
+            (k, v)
          
          
 def not_in(d, n):
     print("++--endwarmup")
-    for _ in range(n):
-        try:
-            d[None]
-        except KeyError:
-            pass
+    for _ in range(REPET):
+        for _ in range(n):
+            try:
+                d[None]
+            except KeyError:
+                pass
 
+    
 def random_access(d, n):
     ml = [k for k in d]
     length = len(ml)
     keys = [ml[random.randint(0, length)] for _ in range(n)]
     print("++--endwarmup")
-    for k in keys:
-        d[k]
+    for _ in range(REPET):
+        for k in keys:
+            d[k]
