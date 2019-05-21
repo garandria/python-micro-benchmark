@@ -191,7 +191,7 @@ def main():
         elif args.type == 'str':
             from data import STRING_S
             tmp = STRING_S
-        # take a slice form the dictionary
+        # take a slice
         l = [k for k in tmp]
         l = l[:args.size]
         s = {k for k in l}
@@ -203,6 +203,8 @@ def main():
             bench_set.random_in(s, args.extra)
         elif args.action == 'not-in':
             bench_set.not_in(s, args.extra)
+        elif args.action == 'random-removal':
+            bench_set.random_removal(s, args.extra)
         ##
 
 if __name__ == '__main__':
