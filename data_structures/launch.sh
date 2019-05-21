@@ -3,7 +3,7 @@ endsize=1000000
 step=1000
 docker_image=aaronspirals/pythonds
 
-opt_list=('iteration-for' 'iteration-while' 'iteration-for-range' 'insertion-comp' 'insertion-beginning' 'insertion-middle' 'insertion-end' 'random-access' 'random-removal' 'clean' 'pop' 'extend' 'create-beginning' 'create-end');
+opt_list=('iteration-for' 'iteration-while' 'iteration-for-range' 'insertion-comp' 'insertion-beginning' 'insertion-middle' 'insertion-end' 'random-access' 'random-removal' 'clean' 'pop' 'extend' 'create-beginning' 'create-end' 'modify-map-lambda' 'modify-comp' 'modify-map-fct');
 
 opt_dict=('insertion' 'insertion-comp' 'iteration-key' 'iteration-kv' 'not-in' 'random-access');
 
