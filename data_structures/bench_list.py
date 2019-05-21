@@ -151,7 +151,8 @@ def modify_map_fct(l):
 def modify_loop(l):
     n = len(l)
     print("++--endwarmup")
-    i = 0
-    while i < n:
-        l[i] = l[i] * 10 * 100 * 1000
-        i += 1
+    for _ in range(REPET):
+        i = 0
+        while i < n:
+            l[i] = l[i] * 10 * 100 * 1000
+            i += 1
