@@ -45,7 +45,7 @@ def main():
                                              'not-in',
                                              'iteration',
                                              'random-in',
-                                             'modify-map-lambda'
+                                             'modify-map-lambda',
                                              'modify-comp',
                                              'modify-map-fct'],
                         help='action to perform on the data structure',
