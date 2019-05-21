@@ -9,6 +9,8 @@ import bench_list
 import bench_set
 import bench_dict
 
+# TODO ADD LIST MODIFICATION CASE DOWN THERE
+
 
 MAXSIZE = 10000
 EXSIZE = MAXSIZE // 2
@@ -45,7 +47,10 @@ def main():
                                              'iteration-kv',
                                              'not-in',
                                              'iteration',
-                                             'random-in'],
+                                             'random-in',
+                                             'modify-map-lambda'
+                                             'modify-comp',
+                                             'modify-map-fct'],
                         help='action to perform on the data structure',
                         required=True)
 

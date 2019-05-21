@@ -126,3 +126,24 @@ def my_extend(l, n):
     print("++--endwarmup")
     for i in range(REPET):
         tmp[i].extend(ml)
+
+
+def modify_comprehension(l):
+    print("++--endwarmup")
+    for _ in range(REPET):
+        [x * 10 * 100 * 1000 for x in l]
+
+def modify_map_lambda(l):
+    tmp = [l.copy() for _ in range(REPET)]
+    print("++--endwarmup")
+    for i in range(REPET):
+        list(map(lambda x: x * 10 * 100 * 1000, tmp[i]))
+
+def fct(x):
+    return x * 10 * 100 * 1000
+        
+def modify_map_fct(l):
+    tmp = [l.copy() for _ in range(REPET)]
+    print("++--endwarmup")
+    for i in range(REPET):
+        list(map(fct, tmp[i]))
