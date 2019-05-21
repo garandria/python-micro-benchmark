@@ -45,3 +45,17 @@ def random_access(d, n):
     for _ in range(REPET):
         for k in keys:
             d[k]
+
+
+def random_removal(d, n):
+    # ok
+    l = list(d)
+    length = len(l) - 1
+    r = [l[random.randint(0, length)] for _ in range(n)]
+    tmp = [d.copy() for _ in range(REPET)]
+    print("++--endwarmup")
+    for i in range(REPET):
+        md = tmp[i]
+        for e in r:
+            del md[e]
+            

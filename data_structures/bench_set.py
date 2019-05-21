@@ -24,7 +24,7 @@ def iteration(s):
 
 def random_in(s, n):
     ml = list(s)
-    length = len(ml)
+    length = len(ml) - 1
     r = [ml[random.randint(0, length)] for _ in range(n)]
     print("++--endwarmup")
     for _ in range(REPET):
@@ -45,7 +45,6 @@ def to_set(l):
 
 
 def random_removal(s, n):
-    # ok
     l = list(s)
     length = len(l) - 1
     r = [l[random.randint(0, length)] for _ in range(n)]
