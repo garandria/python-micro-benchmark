@@ -98,12 +98,21 @@ def random_access(l, n):
             ml[e]
 
 
-def access_in(l, n):
+def access_in_list(l, n):
     indext = l.copy()
     print("++--endwarmup")
     for i in range(REPET):
         for e in indext:
             if e in l:
+                e
+
+def access_in_set(l, n):
+    indext = l.copy()
+    print("++--endwarmup")
+    for i in range(REPET):
+        s = set(l)
+        for e in indext:
+            if e in s:
                 e
 
 
