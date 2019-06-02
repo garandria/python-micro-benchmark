@@ -58,7 +58,14 @@ def insertion_beginning(l, slice_to_insert):
         for e in slice_to_insert:
             ml.insert(0, e)
 
-
+def insertion_beginning_concat(l, slice_to_insert):
+    tmp = [l.copy() for _ in range(REPET)]
+    print("++--endwarmup")
+    for i in range(REPET):
+        ml = tmp[i]
+        for e in slice_to_insert:
+            ml = [e] + ml
+            
 def insertion_middle(l, slice_to_insert):
     # ok
     middle = len(l) // 2
