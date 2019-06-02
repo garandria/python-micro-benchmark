@@ -97,6 +97,16 @@ def random_access(l, n):
         for e in indext:
             ml[e]
 
+
+def access_in(l, n):
+    indext = l.copy()
+    print("++--endwarmup")
+    for i in range(REPET):
+        for e in indext:
+            if e in l:
+                e
+
+
 def random_removal(l, n):
     # ok
     length = len(l) - 1
