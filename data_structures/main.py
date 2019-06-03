@@ -48,7 +48,10 @@ def main():
                                              'modify-map-lambda',
                                              'modify-comp',
                                              'modify-map-fct',
-                                             'modify-loop'],
+                                             'modify-loop',
+                                             'insertion-beginning-concat',
+                                             'acces-in-list',
+                                             'access-in-set'],
                         help='action to perform on the data structure',
                         required=True)
 
@@ -95,6 +98,9 @@ def main():
                 bench_list.create_beginning(slice_to_insert)
             elif args.action == 'create-end':
                 bench_list.create_end(slice_to_insert)
+            elif args.action == 'insertion-beginning-concat':
+                bench_list.insertion_beginning_concat(l, slice_to_insert)
+            
                 ##
         elif args.action == 'random-access':
             bench_list.random_access(l, args.extra)
@@ -114,7 +120,7 @@ def main():
             bench_list.modify_map_fct(l)
         elif args.action == 'modify-loop':
             bench_list.modify_loop(l)
-
+            
         ##
     # DICTIONARY
     if args.data_structure == 'dict':
