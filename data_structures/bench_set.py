@@ -31,6 +31,7 @@ def random_in(s, n):
         for a in r:
             a in s
 
+
 def not_in(s, n):
     print("++--endwarmup")
     for _ in range(REPET):
