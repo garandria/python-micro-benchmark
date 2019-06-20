@@ -19,7 +19,7 @@ def main():
     parser.add_argument('--size', default=MAXSIZE, type=int)
     # data structure choice
     parser.add_argument('--data-structure', choices=['list', 'set', 'dict'],
-                        help='data structure to do the test on', required=True)
+                        help='data strcture to do the test on', required=True)
     # types
     parser.add_argument('--type', choices=['integer', 'float', 'str'],
                         help='data type', required=True)
@@ -34,8 +34,6 @@ def main():
                                              'random-access',
                                              'random-removal',
                                              'clean',
-                                             'create-beginning',
-                                             'create-end',
                                              'pop',
                                              'extend',
                                              'insertion',
@@ -44,18 +42,7 @@ def main():
                                              'iteration-kv',
                                              'not-in',
                                              'iteration',
-                                             'random-in',
-                                             'modify-map-lambda',
-                                             'modify-comp',
-                                             'modify-map-fct',
-                                             'modify-loop',
-                                             'insertion-beginning-concat',
-                                             'insertion-end-concat',
-                                             'access-in-list',
-                                             'access-in-set',
-                                             'not-in-fct',
-                                             'in-fct',
-                                             'in-error'],
+                                             'random-in'],
                         help='action to perform on the data structure',
                         required=True)
 
@@ -64,9 +51,9 @@ def main():
                         help='number of extra element to add in the data structure')
     
     args = parser.parse_args()
-
-    print("--++beginwarmup")
+    
     # LIST
+    print("--++beginwarmup")
     if args.data_structure == 'list':
         l = []
         ## TYPE CHECKING
@@ -83,52 +70,33 @@ def main():
         ## ACTION CHECKING
         if args.action == 'iteration-for':
             bench_list.iteration_for(l)
-        elif args.action == 'iteration-while':            
+        elif args.action == 'iteration-while':
             bench_list.iteration_while(l)
         elif args.action == 'iteration-for-range':
             bench_list.iteration_for_range(l)
         elif args.action == 'insertion-comp':
             bench_list.comp(l)
-        elif 'insertion' in args.action or 'create' in args.action:
-            #
+        elif 'insertion' in args.action:
+            # 
             slice_to_insert = l[:args.extra].copy()
             if args.action == 'insertion-beginning':
                 bench_list.insertion_beginning(l, slice_to_insert)
-            elif args.action == 'insertion-middle':                
+            elif args.action == 'insertion-middle':
                 bench_list.insertion_middle(l, slice_to_insert)
             elif args.action == 'insertion-end':
                 bench_list.insertion_end(l, slice_to_insert)
-            elif args.action == 'create-beginning':
-                bench_list.create_beginning(slice_to_insert)
-            elif args.action == 'create-end':
-                bench_list.create_end(slice_to_insert)
-            elif args.action == 'insertion-beginning-concat':
-                bench_list.insertion_beginning_concat(l, slice_to_insert)
-            elif args.action == 'insertion-end-concat':
-                bench_list.insertion_end_concat(l, slice_to_insert)
-                ##
+                ## 
         elif args.action == 'random-access':
             bench_list.random_access(l, args.extra)
         elif args.action == 'random-removal':
             bench_list.random_removal(l, args.extra)
-        elif args.action == 'clean':            
+        elif args.action == 'clean':
             bench_list.clean(l)
         elif args.action == 'pop':
             bench_list.my_pop(l, args.extra)
         elif args.action == 'extend':
             bench_list.my_extend(l, args.extra)
-        elif args.action == 'modify-map-lambda':
-            bench_list.modify_map_lambda(l)
-        elif args.action == 'modify-comp':
-            bench_list.modify_comprehension(l)
-        elif args.action == 'modify-map-fct':
-            bench_list.modify_map_fct(l)
-        elif args.action == 'modify-loop':
-            bench_list.modify_loop(l)
-        elif args.action == 'access-in-list':
-            bench_list.access_in_list(l, args.extra)
-        elif args.action == 'access-in-set':
-            bench_list.access_in_set(l, args.extra)
+                    
         ##
     # DICTIONARY
     if args.data_structure == 'dict':
@@ -173,17 +141,9 @@ def main():
         elif args.action == 'iteration-kv':
             bench_dict.iteration_kv(d)
         elif args.action == 'not-in':
-            bench_dict.not_in(d, args.extra)
+            bench_dict.not_in(d)
         elif args.action == 'random-access':
             bench_dict.random_access(d, args.extra)
-        elif args.action == 'random-removal':
-            bench_dict.random_removal(d, args.extra)
-        elif args.action == 'not-in-fct':
-            bench_dict.not_in_fct(d, args.extra)
-        elif args.action == 'in-fct':
-            bench_dict.in_fct(d, args.extra)
-        elif args.action == 'in-error':
-            bench_dict.in_error(d, args.extra)            
         ##
 
     # SET
@@ -200,11 +160,11 @@ def main():
             elif args.type == 'str':
                 from data import STRING_L
                 l = STRING_L[:args.size].copy() 
-            if args.action == 'insertion':
-                bench_set.insertion(l)
+                if args.action == 'insertion':
+                    bench_set.insertion(l)
                 # only 2 possibilities : insertion & insertion_comp
-            else:
-                bench_set.comp(l)
+                else:
+                    bench_set.comp(l)
         ## TYPE CHECKING
         tmp = set()
         if args.type == 'integer':
@@ -217,7 +177,7 @@ def main():
         elif args.type == 'str':
             from data import STRING_S
             tmp = STRING_S
-        # take a slice
+        # take a slice form the dictionary
         l = [k for k in tmp]
         l = l[:args.size]
         s = {k for k in l}
@@ -229,8 +189,6 @@ def main():
             bench_set.random_in(s, args.extra)
         elif args.action == 'not-in':
             bench_set.not_in(s, args.extra)
-        elif args.action == 'random-removal':
-            bench_set.random_removal(s, args.extra)
         ##
 
 if __name__ == '__main__':

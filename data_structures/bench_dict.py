@@ -36,6 +36,31 @@ def not_in(d, n):
             except KeyError:
                 pass
 
+
+def not_in_fct(d, n):
+    print("++--endwarmup")
+    for _ in range(REPET):
+        for _ in range(n):
+            if None in d:
+                None
+
+def in_fct(d, n):
+    tmp = [e for e in d][:n]
+    print("++--endwarmup")
+    for _ in range(REPET):
+        for e in tmp:
+            if e in d:
+                e
+
+def in_error(d, n):
+    tmp = [e for e in d][:n]
+    print("++--endwarmup")
+    for _ in range(REPET):
+        for e in tmp:
+            try:
+                d[e]
+            except KeyError:
+                pass
     
 def random_access(d, n):
     ml = [k for k in d]

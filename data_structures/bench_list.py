@@ -78,7 +78,6 @@ def insertion_middle(l, slice_to_insert):
 
 def insertion_end(l, slice_to_insert):
     # ok
-    n = len(l)
     tmp = [l.copy() for _ in range(REPET)]
     print("++--endwarmup")
     for i in range(REPET):
@@ -86,6 +85,17 @@ def insertion_end(l, slice_to_insert):
         for e in slice_to_insert:            
             ml.append(e)
 
+
+def insertion_end_concat(l, slice_to_insert):
+    # ok
+    tmp = [l.copy() for _ in range(REPET)]
+    print("++--endwarmup")
+    for i in range(REPET):
+        ml = tmp[i]
+        for e in slice_to_insert:            
+            ml = ml + [e]
+
+    
 def random_access(l, n):
     # ok
     length = len(l) - 1
